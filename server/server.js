@@ -48,6 +48,15 @@ app.post('/test/:code', (req, res) => {
   res.send('ok')
 })
 
+app.post('/remote/:room/:code', (req, res) => {
+  const command = `node ${__dirname}/../scanner/remoteCard.js ${req.params.room} ${req.params.code}`
+  exec(command, function(error, stdout, stderr) {
+    console.log(stdout, stderr, error)
+  })
+
+  res.send('ok')
+})
+
 app.get('/metadata/spotify', (req, res) => {
   const type = req.query.type
   const uri = req.query.uri

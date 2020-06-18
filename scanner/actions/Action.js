@@ -6,6 +6,7 @@ class Action {
 
     this.card = card
     this.config = config
+    this.remoteRoom = null
   }
 
   envVarsForObject(config, prefix) {
@@ -31,6 +32,9 @@ class Action {
   envVars() {
     let envVars = this.envVarsForObject(this.card, 'CARD')
     envVars = Object.assign(envVars, {magic_cards_room: globalConfig.room})
+    if (this.remoteRoom) {
+      envVars.magic_cards_room = this.remoteRoom
+    }
 
     const prefix = this.constructor.name.replace('Action', '').toUpperCase()
     return Object.assign(envVars, this.envVarsForObject(this.config, prefix))

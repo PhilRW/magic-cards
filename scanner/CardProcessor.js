@@ -6,6 +6,18 @@ const ChannelsAction = require('./actions/ChannelsAction')
 const ScriptAction = require('./actions/ScriptAction')
 
 class CardProcessor {
+
+  constructor() {
+    this.remoteRoom = null
+  }
+
+  remote(room, code) {
+    console.log(`Setting room: ${room}`)
+    this.remoteRoom = room
+    this.process(code)
+    this.remoteRoom = null
+  }
+
   process(code) {
     console.log('Finding card...')
     let card = this.findCard(code)
@@ -52,6 +64,7 @@ class CardProcessor {
     }
 
     if (actionProcessor) {
+      actionProcessor.remoteRoom = this.remoteRoom
       actionProcessor.process()
     }
   }
