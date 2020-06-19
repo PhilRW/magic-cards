@@ -19,7 +19,7 @@ class CardProcessor {
   }
 
   process(code) {
-    console.log('Finding card...')
+    console.log(`Finding card ${code}...`)
     let card = this.findCard(code)
 
     if (!card) {
