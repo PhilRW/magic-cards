@@ -13,3 +13,5 @@ yarn-error.log
 config/cards.json
 config/actions.json
 config/config.json
+
+.idea
